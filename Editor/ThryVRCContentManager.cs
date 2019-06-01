@@ -112,7 +112,7 @@ namespace Thry
             if (allTags == null)
             {
                 allTags = new Dictionary<string, string[]>();
-                string[] tagsStrings = Regex.Split(ThryHelper.readFileIntoString(AVATAR_TAGS_FILE_PATH), @"\r?\n");
+                string[] tagsStrings = Regex.Split(Helper.readFileIntoString(AVATAR_TAGS_FILE_PATH), @"\r?\n");
                 foreach (string s in tagsStrings)
                 {
                     string[] data = Regex.Split(s, @"==");
@@ -135,7 +135,7 @@ namespace Thry
                     if(data.Value.Length>0) s = s.Substring(0, s.Length - 1);
                     s += "\n";
                 }
-                ThryHelper.writeStringToFile(s, AVATAR_TAGS_FILE_PATH);
+                Helper.writeStringToFile(s, AVATAR_TAGS_FILE_PATH);
             }
         }
 
