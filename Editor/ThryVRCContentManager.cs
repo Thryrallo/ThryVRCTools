@@ -198,14 +198,15 @@ namespace Thry
         static void FetchAvatars(int offset = 0)
         {
             ApiAvatar.FetchList(
-                delegate (List<ApiAvatar> obj)
+                delegate (IEnumerable<ApiAvatar> obj)
                 {
                     Debug.LogFormat("<color=yellow>Fetching Avatar Bucket {0}</color>", offset);
-                    if (obj.Count > 0)
+                    if (obj.FirstOrDefault() != null)
                         fetchingAvatars = EditorCoroutine.Start(() =>
                         {
-                            int count = obj.Count;
-                            SetupAvatarData(obj);
+                            var l = obj.ToList();
+                            int count = l.Count;
+                            SetupAvatarData(l);
                             FetchAvatars(offset + count);
                         });
                     else
@@ -227,21 +228,23 @@ namespace Thry
                 offset,
                 ApiAvatar.SortHeading.None,
                 ApiAvatar.SortOrder.Descending,
-                false,
+                null,
+                null,
                 true);
         }
 
         static void FetchWorlds(int offset = 0)
         {
             ApiWorld.FetchList(
-                delegate (List<ApiWorld> obj)
+                delegate (IEnumerable<ApiWorld> obj)
                 {
                     Debug.LogFormat("<color=yellow>Fetching World Bucket {0}</color>", offset);
-                    if (obj.Count > 0)
+                    if (obj.FirstOrDefault() != null)
                         fetchingWorlds = EditorCoroutine.Start(() =>
                         {
-                            int count = obj.Count;
-                            SetupWorldData(obj);
+                            var l = obj.ToList();
+                            int count = l.Count;
+                            SetupWorldData(l);
                             FetchWorlds(offset + count);
                         });
                     else
@@ -268,7 +271,8 @@ namespace Thry
                 null,
                 "",
                 ApiWorld.ReleaseStatus.All,
-                false,
+                null,
+                null,
                 true);
         }
 
