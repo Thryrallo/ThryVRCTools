@@ -1,3 +1,3 @@
-GenderGuesser.cs
-ThryAutoAvatarDescriptor.cs
-ThryVRCContentManager.cs
+Editor/GenderGuesser.cs
+Editor/ThryAutoAvatarDescriptor.cs
+Editor/ThryVRCContentManager.cs
