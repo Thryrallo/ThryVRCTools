@@ -1,4 +1,5 @@
 ﻿#if VRC_SDK_EXISTS
+#if VRC_SDK_SUPPORTED_VERSION
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -693,4 +694,5 @@ namespace Thry
         }
     }
 }
+#endif
 #endif

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#if VRC_SDK_EXISTS
+#if VRC_SDK_SUPPORTED_VERSION
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -6,7 +8,6 @@ using UnityEngine;
 using VRC;
 using VRC.Core;
 using VRCSDK2;
-
 
 namespace Thry
 {
@@ -1189,3 +1190,5 @@ namespace Thry
         }
     }
 }
+#endif
+#endif
