@@ -13,7 +13,18 @@ namespace Thry
     public class VRCContentManager : EditorWindow
     {
 
-        [MenuItem("Thry/VRC/Manage Uploaded Content")]
+        [MenuItem("Thry/VRC/Content Manager")]
+        static void InitThry()
+        {
+            Init();
+        }
+
+        [MenuItem("VRChat SDK/Thry/Content Manager")]
+        static void InitVRC()
+        {
+            Init();
+        }
+
         static void Init()
         {
             window = (VRCContentManager)EditorWindow.GetWindow(typeof(VRCContentManager));
