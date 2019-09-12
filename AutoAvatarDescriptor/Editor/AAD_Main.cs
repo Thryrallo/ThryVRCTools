@@ -49,7 +49,7 @@ namespace Thry
 
         static void OnHierarchyChange()
         {
-            if (Config.Get().vrchatAutoFillAvatarDescriptor)
+            if (AAD_Settings.GetData().auto_fill)
             {
                 GameObject parent = Selection.activeGameObject;
                 if (parent == null) return;
@@ -72,7 +72,7 @@ namespace Thry
 
             Config config =Config.Get();
 
-            if (!config.vrchatForceFallbackAnimationSet)
+            if (!AAD_Settings.GetData().force_fallback)
             {
                 int probabilityFemale = 0;
                 int probabilityMale = 0;
@@ -93,11 +93,11 @@ namespace Thry
                 }
                 if (probabilityFemale > probabilityMale) descriptor.Animations = VRCSDK2.VRC_AvatarDescriptor.AnimationSet.Female;
                 else if (probabilityFemale < probabilityMale) descriptor.Animations = VRCSDK2.VRC_AvatarDescriptor.AnimationSet.Male;
-                else descriptor.Animations = (VRCSDK2.VRC_AvatarDescriptor.AnimationSet)config.vrchatDefaultAnimationSetFallback;
+                else descriptor.Animations = (VRCSDK2.VRC_AvatarDescriptor.AnimationSet)AAD_Settings.GetData().animation_fallback;
             }
             else
             {
-                descriptor.Animations = (VRCSDK2.VRC_AvatarDescriptor.AnimationSet)config.vrchatDefaultAnimationSetFallback;
+                descriptor.Animations = (VRCSDK2.VRC_AvatarDescriptor.AnimationSet)AAD_Settings.GetData().animation_fallback;
             }
 
             if (descriptor.VisemeSkinnedMesh == null)
