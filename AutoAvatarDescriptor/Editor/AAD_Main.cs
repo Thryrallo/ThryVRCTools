@@ -70,8 +70,6 @@ namespace Thry
             viewPointPos = vectorAddWeightedVector(viewPointPos, parent.transform.position, -1);
             descriptor.ViewPosition = viewPointPos;
 
-            Config config =Config.Get();
-
             if (!AAD_Settings.GetData().force_fallback)
             {
                 int probabilityFemale = 0;
