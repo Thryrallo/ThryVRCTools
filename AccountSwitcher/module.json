@@ -1,0 +1,10 @@
+{
+  "name": "VRC Account Switcher",
+  "version": 0.1,
+  "description": "Easy switch between multiple vrchat accounts.",
+  "classname": "Thry.AS_Main",
+  "settings_file_name": "AS_Main.cs",
+  "requirement": {
+  },
+  "files": [ "Editor/AS_Main.cs"]
+}
