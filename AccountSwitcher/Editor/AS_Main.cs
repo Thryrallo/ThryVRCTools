@@ -177,20 +177,15 @@ namespace Thry
             AttemptLogin();
         }
 
-        static bool isInitialized = false;
         static string clientInstallPath;
         public static bool signingIn = false;
         static string error = null;
 
 
         static bool entered2faCodeIsInvalid;
-        static bool authorizationCodeWasVerified;
+        static bool authorizationCodeWasVerified = false;
 
-        static private int previousAuthenticationCodeLength = 0;
-        static bool checkingCode;
-        static string authenticationCode = "";
-
-        static System.Action onAuthenticationVerifiedAction;
+        //static System.Action onAuthenticationVerifiedAction;
 
         static bool _showTwoFactorAuthenticationEntry = false;
 
@@ -203,7 +198,6 @@ namespace Thry
             set
             {
                 _showTwoFactorAuthenticationEntry = value;
-                authenticationCode = "";
                 if (!_showTwoFactorAuthenticationEntry && !authorizationCodeWasVerified)
                     Logout(false);
             }
@@ -254,7 +248,7 @@ namespace Thry
                     if (c.Cookies.ContainsKey("auth"))
                         ApiCredentials.Set(username, username, "vrchat", c.Cookies["auth"]);
                     showTwoFactorAuthenticationEntry = true;
-                    onAuthenticationVerifiedAction = OnAuthenticationCompleted;
+                    //onAuthenticationVerifiedAction = OnAuthenticationCompleted;
                 }
             );
         }
