@@ -74,6 +74,18 @@ namespace Thry
             return adding_username;
         }
 
+        public static string GetPassword()
+        {
+            if (selected_user_index < add_index)
+                return p_passwords[selected_user_index];
+            return adding_password;
+        }
+
+        public static bool IsSavedUser()
+        {
+            return selected_user_index < add_index;
+        }
+
         public static int add_index
         {
             get
@@ -193,9 +205,11 @@ namespace Thry
         }
 
         private static string adding_username = "";
+        private static string adding_password = "";
         public static void AddAccount(string username, string password)
         {
             adding_username = username;
+            adding_password = password;
             //test credentials
             AttemptLogin(username, password, delegate()
             {
@@ -317,7 +331,13 @@ namespace Thry
         {
             InitResources();
 
+            EditorGUI.BeginChangeCheck();
             AS_Main.selected_user_index = EditorGUILayout.Popup(AS_Main.selected_user_index, AS_Main.usernames);
+            if (EditorGUI.EndChangeCheck())
+            {
+                checkingCode = false;
+                showTwoFactorAuthenticationEntry = false;
+            }
 
             EditorGUILayout.Separator();
 
@@ -528,11 +548,18 @@ namespace Thry
             EditorGUILayout.LabelField(ENTER_2FA_CODE_LABEL_STRING, EditorStyles.boldLabel, GUILayout.MaxWidth(size.x));
             authenticationCode = EditorGUILayout.TextField(authenticationCode);
 
+            string auth_username = username;
+            string auth_password = password;
+            if(AS_Main.IsSavedUser())
+            {
+                auth_username = AS_Main.GetUsername();
+                auth_password = AS_Main.GetPassword();
+            }
             // Verify 2FA code button
             if (GUILayout.Button(ENTER_2FA_CODE_VERIFY_STRING, GUILayout.Width(ENTER_2FA_CODE_VERIFY_BUTTON_WIDTH)))
             {
                 checkingCode = true;
-                APIUser.VerifyTwoFactorAuthCode(authenticationCode, isValidAuthenticationCode ? API2FA.TIME_BASED_ONE_TIME_PASSWORD_AUTHENTICATION : API2FA.ONE_TIME_PASSWORD_AUTHENTICATION, username, password,
+                APIUser.VerifyTwoFactorAuthCode(authenticationCode, isValidAuthenticationCode ? API2FA.TIME_BASED_ONE_TIME_PASSWORD_AUTHENTICATION : API2FA.ONE_TIME_PASSWORD_AUTHENTICATION, auth_username, auth_password,
                         delegate
                         {
                         // valid 2FA code submitted
