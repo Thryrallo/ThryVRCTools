@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+//update test 0.5
 
 #if VRC_SDK_EXISTS
 using VRC.Core;
