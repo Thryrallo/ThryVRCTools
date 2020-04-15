@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 //update test 0.5
 
-#if VRC_SDK_EXISTS
+#if VRC_SDK_VRCSDK2 || VRC_SDK_VRCSDK3
 using VRC.Core;
 
 namespace Thry
@@ -409,8 +409,8 @@ namespace Thry
         {
             EditorGUILayout.LabelField("Logged in as:", APIUser.CurrentUser.displayName);
 
-            if (SDKClientUtilities.IsInternalSDK())
-                EditorGUILayout.LabelField("Developer Status: ", APIUser.CurrentUser.developerType.ToString());
+            //if (SDKClientUtilities.IsInternalSDK())
+            //    EditorGUILayout.LabelField("Developer Status: ", APIUser.CurrentUser.developerType.ToString());
 
             EditorGUILayout.BeginHorizontal();
 

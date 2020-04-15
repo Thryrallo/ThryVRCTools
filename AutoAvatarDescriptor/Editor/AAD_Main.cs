@@ -1,4 +1,4 @@
-﻿#if VRC_SDK_EXISTS
+﻿#if VRC_SDK_VRCSDK2
 using System;
 using System.Collections;
 using System.Collections.Generic;
