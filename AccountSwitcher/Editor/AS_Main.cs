@@ -322,7 +322,7 @@ namespace Thry
 
         private void OnFocus()
         {
-            if(AS_Main.selected_user_index < AS_Main.add_index && !AS_Main.signingIn && !APIUser.IsLoggedInWithCredentials)
+            if(AS_Main.selected_user_index < AS_Main.add_index && !AS_Main.signingIn && !APIUser.IsLoggedIn)
             {
                 AS_Main.Login();
             }
@@ -378,7 +378,7 @@ namespace Thry
 
         private void AccountGUI()
         {
-            if (APIUser.IsLoggedInWithCredentials)
+            if (APIUser.IsLoggedIn)
                 OnCreatorStatusGUI();
             else
                 NotLoggedInGUI();
@@ -386,7 +386,7 @@ namespace Thry
             GUILayout.BeginHorizontal();
             GUILayout.Label("");
 
-            if(APIUser.IsLoggedInWithCredentials)
+            if(APIUser.IsLoggedIn)
             {
                 if (GUILayout.Button("Logout"))
                     AS_Main.Logout(true);

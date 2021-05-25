@@ -1,4 +1,0 @@
-Editor/GenderGuesser.cs
-Editor/ThryAutoAvatarDescriptor.cs
-Editor/ThryVRCContentManager.cs
-Editor/ThryVRCBuildControl.cs
